@@ -1,0 +1,8 @@
+version: '3'
+services:
+  node:
+    build: .
+    container_name: nodehelloworld
+    volumes:
+      - ./app/helloworld.js:/app/helloworld.js
+      - ./start.sh:/start.sh
