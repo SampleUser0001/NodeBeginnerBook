@@ -4,7 +4,7 @@ Nodeビギナーズブックを試す
 ## Dockerコマンド
 
 ```
-docker-compose up --force-rm
+docker-compose up
 ```
 
 ## JavaScriptについて
