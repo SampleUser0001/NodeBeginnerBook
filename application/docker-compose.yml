@@ -6,5 +6,5 @@ services:
     ports: 
       - "8888:8888"
     volumes:
-      - ./src/server.js:/app/src/server.js
+      - ./src:/app/src
       - ./start.sh:/app/start.sh
