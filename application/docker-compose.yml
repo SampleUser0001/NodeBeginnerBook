@@ -1,0 +1,10 @@
+version: '3'
+services:
+  node:
+    build: .
+    container_name: nodeapp
+    ports: 
+      - "8888:8888"
+    volumes:
+      - ./src/server.js:/app/src/server.js
+      - ./start.sh:/app/start.sh
