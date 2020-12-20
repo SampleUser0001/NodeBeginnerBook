@@ -2,13 +2,23 @@ let exec = require("child_process").exec;
 
 function start(response) {
     console.log("Request handler 'start' was called.");
-    let content = "empty";
 
-    exec("ls -lah", function (error, stdout, stderr) {
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write(stdout);
-        response.end();
-    });
+    let body = '<html>' +
+        '<head>' +
+        '<meta http-equiv="Content-Type" content="type/html; charset=UTF-8" />' +
+        '</head>' +
+        '<body>' +
+        '<form action="/upload" method="post">' +
+        '<textarea name="text" row="20" cols="60"></textarea><br>' +
+        '<input type="submit" value="Submit text" />' +
+        '</form>' +
+        '</body>' +
+        '</html>';
+
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(body);
+    response.end();
+
 }
 
 function upload(response) {
