@@ -1,6 +1,6 @@
-var querystring = require("querystring"),
-    fs = require("fs"),
-    formidable = require("formidable");
+const querystring = require("querystring");
+const fs = require("fs");
+const formidable = require("formidable");
     
 const imageFilepath = "/app/tmp/test.png";
 
@@ -13,7 +13,7 @@ function start(response) {
         '</head>' +
         '<body>' +
         '<form action="/upload" enctype="multipart/form-data" method="post">' +
-        '<textarea name="text" row="20" cols="60"></textarea><br>' +
+        '<input type="file" name="upload" multiple="multiple"><br>' +
         '<input type="submit" value="Upload file" />' +
         '</form>' +
         '</body>' +
@@ -34,10 +34,10 @@ function upload(response, request) {
         console.log("parsing done");
         /* Possible error on Windows systems:
             tried to rename to an already existing file */
-        fs.rename(file.upload.path, imageFilepath, function(err) {
+        fs.rename(files.upload.path, imageFilepath, function(err) {
             if(err){
                 fs.unlink(imageFilepath);
-                fs.rename(file.upload.path, imageFilepath);
+                fs.rename(files.upload.path, imageFilepath);
             }
         });
         response.writeHead(200, {"Content-Type": "text/html"});
@@ -47,15 +47,15 @@ function upload(response, request) {
     });
 }
 
-function show(response, postData) {
+function show(response) {
     console.log("Request handler 'show' was called.");
-    fs.readFile(imageFilepath, "binary", function(error, file) {
+    fs.readFile(imageFilepath, "binary", function(error, files) {
         if(error) {
             response.writeHead(500, {"Content-Type": "text/plain"});
             response.write(error + "\n");
         } else {
             response.writeHead(200, {"Content-Type": "image/png"});
-            response.write(file, "binary");
+            response.write(files, "binary");
         }
         response.end();
     });

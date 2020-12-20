@@ -1,5 +1,12 @@
 #!/bin/bash
 
 cd /app
-rm -rf node_modules package-lock.json && npm install
+
+npm init -y
+npm install -y formidable
+
+cat package.json
+
+npm install
+
 node ./src/index.js
