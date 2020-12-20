@@ -1,3 +1,5 @@
 #!/bin/bash
 
-node /app/src/index.js
+cd /app
+rm -rf node_modules package-lock.json && npm install
+node ./src/index.js
