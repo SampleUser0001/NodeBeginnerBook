@@ -4,6 +4,7 @@ Nodeビギナーズブックを試す
 ## Dockerコマンド
 
 ```
+docker-compose build --force-rm
 docker-compose up
 ```
 
